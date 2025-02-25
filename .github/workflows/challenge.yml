@@ -1,0 +1,35 @@
+name: challenge
+
+on: push
+
+jobs:
+  job1:
+    name: Print date in ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout files
+        uses: actions/checkout@v4
+      - name: print date
+        run: date
+
+  job2:
+    name: print date in windows
+    runs-on: windows-latest
+    steps:
+      - name: print date
+        run: Get-Date
+
+  job3:
+    name: print date in amcos
+    runs-on: macos-latest
+    steps:
+      - name: print date
+        run: date
+
+  job4:
+    needs: [job1, job2, job3]
+    name: print completed
+    runs-on: ubuntu-latest
+    steps:
+      - name: print completed
+        run: echo "all jobs are completed"
