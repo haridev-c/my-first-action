@@ -18,7 +18,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Super Linter
-        uses: super-linter/super-linter@v7.2.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.14"
+      - run: |
+          npm ci
+          npx eslint
